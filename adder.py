@@ -139,7 +139,7 @@ async def dbs(_, m):
             break
     await ok.edit(f"Scrap status :- \n\nAdded : {a}\n\nFailed : {b}")
             
-@Alf.on_message(filters.command(["add", "pop", "showdb"], "!")
+@Alf.on_message(filters.command(["add", "pop", "showdb"], "!"))
 async def test(_, m):
     if not m.from_user.id in SUDO:
         return 
