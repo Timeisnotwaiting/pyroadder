@@ -11,16 +11,15 @@ db = mongo.PSDB
 scrdb = db.scr
 
 async def add(a: int):
-    try:
-        await scrdb.insert_one({"a": a})
-    except:
-        pass
+    found = scrdb.find_one({"a": a})
+    if not found:
+        return await scrdb.insert_one({"a": a})
+    
 
 async def pop(a: int):
-    try:
-        await scrdb.delete_one({"a": a})
-    except:
-        pass
+    found = scrdb.find_one({"a": a})
+    if found:
+        return await scrdb.delete_one({"a": a})
 
 async def target():
     users = scrdb.find({"a": {"$gt": 0}})
