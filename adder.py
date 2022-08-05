@@ -45,9 +45,11 @@ async def add(_, m):
         try:
             await _.add_chat_members(l, lnk)
             a += 1
+            await ok.edit(f"Scrap status :-\n\nList appended :- {len(MEM)}\n\nAdded :- {a}\nFailed :- {b}\n\nFor error, check logs")
             time.sleep(2)
         except Exception as ea:
             b += 1
+            await ok.edit(f"Scrap status :-\n\nList appended :- {len(MEM)}\n\nAdded :- {a}\nFailed :- {b}\n\nFor error, check logs")
             pass
         if a == 30:
             break
