@@ -96,9 +96,9 @@ async def add_to_db(_, m):
             MEM.append(mem.user.id)
     a = 0
     b = 0
-    for mem in MEM:
+    for meme in MEM:
         try:
-            await add(mem)
+            await add(meme)
             a += 1
         except Exception as e:
             b += 1
