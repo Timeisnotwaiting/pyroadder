@@ -53,7 +53,7 @@ async def add(_, m):
             pass
         if a == 30:
             break
-    print(ea)
+    
     a = str(a)
     await ok.delete()
     await _.send_message(l, f"Scrap status :-\n\nList appended :- {len(MEM)}\n\nAdded :- {a}\nFailed :- {b}\n\nFor error, check logs")
