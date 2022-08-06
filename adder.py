@@ -33,7 +33,7 @@ async def add(_, m):
         return await m.reply("⚠️ provide valid group id !")
     ok = await m.reply("➕ adding users from given group id !")
     if m.chat.type == "private":
-        await ok.edit("try this command in groups !")
+        return await ok.edit("try this command in groups !")
     MEM = []
     async for mem in _.get_chat_members(id):
         if (not mem.user.is_bot and not mem.user.is_deleted):
