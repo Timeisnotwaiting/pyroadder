@@ -1,4 +1,3 @@
 pyrogram
 tgcrypto
-motor
-pymongo[srv]
+sqlalchemy
