@@ -42,5 +42,13 @@
         {
             "url": "heroku/python"
         }
-    ]
+    ],
+    "addons": [
+        {
+            "options": {
+            "version": "12"
+        },
+         "plan": "heroku-postgresql"
+      }
+   ],
 }
