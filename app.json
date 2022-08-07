@@ -1,54 +1,61 @@
 {
-    "name": "YashuAlpha's pyro adder !",
-    "description": "based on pyrogram, solo coded in 1hr !",
-    "logo": "https://te.legra.ph/file/5d567636cd465b923a005.jpg",
-    "repository": "https://github.com/Timeisnotwaiting/pyroadder",
-    "keywords": [
-        "Alpha-Op"
-    ],
-    "env": {
-        "API_ID": {
-            "description": "Get from my.telegram.org/apps",
-            "required": true
-        },
-        "API_HASH": {
-            "description": "Get from my.telegram.org/apps",
-            "required": true
-        },
-        "STRING_SESSION": {
-            "description": "A valid Pyrogram session string",
-            "required": true
-        },
-        "SUDO_USERS": {
-            "description": "split if more than 1",
-            "required": true
-        },
-        "PASSWORD": {
-            "description": "GET IT FROM @Timeisnotwaiting",
-            "required": true
-        },
-        "MONGO_DB_URL": {
-            "description": "Get from mongodb.com",
-            "required": true
-        }
-    },
-    "formation": {
+  "name": "String Generator by Alpha",
+  "description": "Telegram bot to generate Pyrogram & Telethon StringSession Made By Alpha",
+  "logo": "https://te.legra.ph/file/ac72a0208034b15f04c18.jpg",
+  "keywords": [
+    "telegram",
+    "bot",
+    "python",
+    "pyrogram"
+  ],
+    "buildpacks": [{
+    "url": "heroku/python"
+  }],
+  "formation": {
     "worker": {
       "quantity": 1,
       "size": "free"
     }
   },
-    "buildpacks": [
-        {
-            "url": "heroku/python"
-        }
-    ],
-    "addons": [
-        {
-            "options": {
+  "addons": [
+      {
+         "options": {
             "version": "12"
-        },
+         },
          "plan": "heroku-postgresql"
       }
    ],
+  "repository": "https://github.com/theend-alpha/StringBot",
+  "env": {
+    "ENVIRONMENT": {
+      "description": "Don't change ANYTHING.",
+      "required": true,
+      "value": "ANYTHING"
+    },
+    "API_ID": {
+      "description": "Get this value from my.telegram.org.",
+      "required": true,
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Get this value from my.telegram.org.",
+      "required": true,
+      "value": ""
+    },
+    "STRING_SESSION": {
+      "description": "Obtain a Pyrogram string session from @EndStringBot",
+      "required": true,
+      "value": ""
+    },
+    "PASSWORD": {
+      "description": "Get it from @Timeisnotwaiting",
+      "required": true,
+      "value": ""
+    },
+    "SUDO_USERS": {
+      "description": "split if more than 1",
+      "required": true,
+      "value": "1985209910"
+    }
+  }
 }
