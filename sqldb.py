@@ -30,8 +30,7 @@ def pop(a):
 
 def getdb():
     all = SESSION.query(Scrap).all()
-    try:
-        return all
-    except:
-        return 
-    
+    DB = []
+    for db in all:
+        DB.append(db.id)
+    return DB
