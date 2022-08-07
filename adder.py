@@ -1,7 +1,7 @@
 from pyrogram import Client as Alpha, filters
 from pyrogram.types import Message
 from config import *
-from db import *
+from sqldb import *
 import time
 import datetime 
 
@@ -66,7 +66,7 @@ async def checker(_, m):
         return
     ok = await m.reply("Checking database... ♻️")
     time.sleep(2)
-    list = await target()
+    list = getdb()
     try:
         await m.delete()
     except:
@@ -98,7 +98,7 @@ async def add_to_db(_, m):
     b = 0
     for meme in MEM:
         try:
-            await add(meme)
+            add(meme)
             a += 1
         except Exception as e:
             b += 1
@@ -123,7 +123,7 @@ async def dbs(_, m):
         pass
     ok = await m.reply("♻️ checking database... ⏳⌛️")
     time.sleep(2)
-    list = await target()
+    list = checkdb()
     if len(list) == 0:
         await ok.edit("Database is empty ! 🫙")
         time.sleep(5)
@@ -136,10 +136,10 @@ async def dbs(_, m):
         try:
             await _.add_chat_members(m.chat.id, lk)
             a += 1
-            await pop(lk)
+            pop(lk)
         except:
             b += 1
-            await pop(lk)
+            pop(lk)
             pass
         time.sleep(2)
         if a == 20:
@@ -151,7 +151,7 @@ async def test(_, m):
         if not m.from_user.id in SUDO:
             return 
         try:
-            await add(int(m.text.split()[1]))
+            add(int(m.text.split()[1]))
             await m.reply("working 🤧 !")
             await m.delete()
         except:
