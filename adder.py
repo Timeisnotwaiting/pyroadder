@@ -123,7 +123,10 @@ async def dbs(_, m):
         pass
     ok = await m.reply("♻️ checking database... ⏳⌛️")
     time.sleep(2)
-    list = checkdb()
+    try:
+        list = checkdb()
+    except:
+        await ok.edit("Can't connect to database !")
     if len(list) == 0:
         await ok.edit("Database is empty ! 🫙")
         time.sleep(5)
