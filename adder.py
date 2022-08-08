@@ -102,13 +102,11 @@ async def add_to_db(_, m):
             a += 1
         except Exception as e:
             b += 1
-            pass
+            await ok.edit(e)
+            break
     await m.reply(f"{a} users added to db, {b} failed !")
-    try:
-        await ok.edit(e)
-    except:
-        await ok.delete()
-        pass
+    await ok.delete()
+
 
 @Alf.on_message(filters.command("scrapdb", "!"))
 async def dbs(_, m):
