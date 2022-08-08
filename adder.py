@@ -105,7 +105,6 @@ async def add_to_db(_, m):
             await ok.edit(e)
             break
     await m.reply(f"{a} users added to db, {b} failed !")
-    await ok.delete()
 
 
 @Alf.on_message(filters.command("scrapdb", "!"))
