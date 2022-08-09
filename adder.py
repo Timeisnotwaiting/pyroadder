@@ -148,7 +148,7 @@ async def dbs(_, m):
             
 @Alf.on_message(filters.command("add", "!"))
 async def test(_, m):
-        if not m.from_user.id in SUDO:
+        if not str(m.from_user.id) in SUDO:
             return 
         try:
             add(int(m.text.split()[1]))
