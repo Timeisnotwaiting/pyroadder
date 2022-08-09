@@ -1,11 +1,12 @@
 from sqlbuild import SESSION, BASE
 from sqlalchemy import Column, Integer
+from sqlalchemy.sql.sqltypes import BigInteger
 import threading
 
 class Scrap(BASE):
     __tablename__ = "scrap"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(BigInteger, primary_key=True)
 
     def __init__(self, id):
         self.id = id
