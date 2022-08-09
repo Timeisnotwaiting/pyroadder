@@ -14,7 +14,7 @@ Scrap.__table__.create(checkfirst=True)
 
 LOCKER = threading.RLock()
 
-def add(id):
+def add(a):
     with LOCKER:
         got = SESSION.query(Scrap).get(a)
         if not got:
@@ -24,7 +24,7 @@ def add(id):
         else:
             SESSION.close()
 
-def pop(id):
+def pop(a):
     with LOCKER:
         got = SESSION.query(Scrap).get(a)
         if got:
