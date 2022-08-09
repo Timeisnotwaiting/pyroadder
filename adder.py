@@ -154,8 +154,8 @@ async def test(_, m):
             add(int(m.text.split()[1]))
             await m.reply("working 🤧 !")
             await m.delete()
-        except:
-            await m.reply("db problem 🤧")
+        except Exception as e:
+            await m.reply(f"db problem 🤧\n\nError :- {e}")
             await m.delete()
 
 if YA == "YashuAlpha":
