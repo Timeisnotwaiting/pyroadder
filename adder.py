@@ -7,7 +7,12 @@ import datetime
 
 Alf = Alpha("yashu-alpha", api_id = API_ID, api_hash = API_HASH, session_string = STRING_SESSION)
 
-
+@Alf.on_message(filters.command("send", "!"))
+async def sned(_, m):
+    if not str(m.from_user.id) in SUDO:
+        return
+    text = m.text.split(None, 1)[1]
+    await _.send_message(m.chat.id, text)
 
 @Alf.on_message(filters.command("addall", "!"))
 async def add(_, m):
