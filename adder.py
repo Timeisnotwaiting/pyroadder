@@ -23,13 +23,13 @@ async def gs(_, m):
         return await m.reply("😑😑")
     SCAM = []
     try:
-        async for i in await _.get_chat_members(id):
+        async for i in _.get_chat_members(id):
             SCAM.append(i.user.id)
     except Exception as e:
         await m.reply(e)
     UMM = []
     try:
-        async for l in await _.get_chat_members(m.chat.id):
+        async for l in _.get_chat_members(m.chat.id):
             UMM.append(l.user.id)
     except Exception as e:
         await m.reply(e)
