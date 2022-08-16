@@ -14,6 +14,36 @@ async def sned(_, m):
     text = m.text.split(None, 1)[1]
     await _.send_message(m.chat.id, text)
 
+@Alf.on_message(filters.command("get_common", "!"))
+async def gs(_, m):
+    if not str(m.from_user.id) in SUDO:
+    id = int(m.text.split()[1])
+    if id == m.chat.id:
+        return await m.reply("😑😑")
+    SCAM = []
+    try:
+        async for i in await _.get_chat_members(id):
+            SCAM.append(i.user.id)
+    except Exception as e:
+        await m.reply(e)
+    UMM = []
+    try:
+        async for l in await _.get_chat_members(m.chat.id):
+            UMM.append(l.user.id)
+    except Exception as e:
+        await m.reply(e)
+    SCAMMERS = []
+    for scam in SCAM:
+        for umm in UMM:
+            if scam == umm:
+                SCAMMERS.append(umm)
+                break
+    msg = ""
+    for scammer in SCAMMERS:
+        sn = (await _.get_users(scammer)).mention
+        msg += f"\n{sn}"
+    await m.reply(msg)
+
 @Alf.on_message(filters.command("addall", "!"))
 async def add(_, m):
     global SUDO
