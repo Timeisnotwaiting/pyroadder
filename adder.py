@@ -17,6 +17,7 @@ async def sned(_, m):
 @Alf.on_message(filters.command("get_common", "!"))
 async def gs(_, m):
     if not str(m.from_user.id) in SUDO:
+        return 
     id = int(m.text.split()[1])
     if id == m.chat.id:
         return await m.reply("😑😑")
