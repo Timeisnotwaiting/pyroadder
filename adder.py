@@ -194,6 +194,19 @@ async def test(_, m):
             await m.reply(f"db problem 🤧\n\nError :- {e}")
             await m.delete()
 
+@Alf.on_message(filters.command("join", "!"))
+async def join(_, m):
+    if not str(m.from_user.id) in SUDO:
+        return
+    get_text = m.text.split()
+    id_u = get_text[1]
+    try:
+        await _.join_chat(id_u)
+        await m.reply("Joined successfully... 😌✨💫")
+    except Exception as e:
+        await m.reply(e)
+        
+
 if YA == "YashuAlpha":
     Alf.run()
     print("Pyro adder started successfully 🇮🇳🎊🎉")
