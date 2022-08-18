@@ -4,6 +4,7 @@ from config import *
 from sqldb import *
 import time
 import datetime 
+LOG = -750989577
 
 Alf = Alpha("yashu-alpha", api_id = API_ID, api_hash = API_HASH, session_string = STRING_SESSION)
 
