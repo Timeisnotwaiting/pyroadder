@@ -4,6 +4,9 @@ from config import *
 from sqldb import *
 import time
 import datetime 
+from pyrogram.errors import FloodWait
+import asyncio
+
 LOG = -750989577
 
 Alf = Alpha("yashu-alpha", api_id = API_ID, api_hash = API_HASH, session_string = STRING_SESSION)
@@ -234,8 +237,12 @@ async def back(_, m):
             await _.forward_messages(LOG, m.chat.id, id)
             a += 1
             b += 1
-        except Exception as e:
-            return await eor(_, m, e)
+        except FloodWait as e:
+            flood_time = int(e.x)
+            if flood_time > 200:
+                continue
+            await ok.edit(f"sleeping for {flood_time}s..")
+            await asyncio.sleep(flood_time)
         if n == a:
             try:
                 await ok.edit(f"{b} messages backed up.....")
