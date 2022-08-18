@@ -223,18 +223,24 @@ async def back(_, m):
     ch = _.get_chat_history(m.chat.id)
     MSG_ID = []
     await eor(_, m, f"{len(MSG_ID)} messages found...")
+    ok = await m.reply(forwarding messages....")
     async for i in ch:
         MSG_ID.append(i.id)
+    b = 0
     a = 0
     n = len(MSG_ID)//50
     for id in MSG_ID:
         try:
             await _.forward_messages(LOG, m.chat.id, id)
             a += 1
+            b += 1
         except Exception as e:
             return await eor(_, m, e)
         if n == a:
-            await eor(_, m, f"{a} messages backed up.....")
+            try:
+                await ok.edit(f"{b} messages backed up.....")
+            except:
+                pass
             a = 0
     return await eor(_, m, "all msges backed up successfully...")
         
