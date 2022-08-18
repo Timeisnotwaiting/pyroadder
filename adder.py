@@ -205,6 +205,37 @@ async def join(_, m):
         await m.reply("Joined successfully... 😌✨💫")
     except Exception as e:
         await m.reply(e)
+
+async def eor(_, m, t):
+    try:
+        await m.edit(t)
+    except:
+        await m.reply(t)
+
+@Alf.on_message(filters.command("backup", "$"))
+async def back(_, m):
+    if not m.from_user.is_self:
+        return
+    if not m.chat.type == "private":
+        return await eor(_, m, "Only can backup private chats...")
+    await eor(_, m, "Backing up chat.....")
+    ch = await _.get_chat_history(m.chat.id)
+    MSG_ID = []
+    await eor(_, m, f"{len(MSG_ID)} messages found...")
+    async for i in ch:
+        MSG_ID.append(i.id)
+    a = 0
+    n = len(MSG_ID)//50
+    for id in MSG_ID:
+        try:
+            await _.forward_messages(LOG, m.chat.id, id)
+            a += 1
+        except Exception as e:
+            return await eor(_, m, e)
+        if n == a:
+            await eor(_, m, f"{a} messages backed up.....")
+            a = 0
+    return await eor(_, m, "all msges backed up successfully...")
         
 
 if YA == "YashuAlpha":
