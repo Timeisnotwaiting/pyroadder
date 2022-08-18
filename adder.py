@@ -225,10 +225,10 @@ async def back(_, m):
     await eor(_, m, "Backing up chat.....")
     ch = _.get_chat_history(m.chat.id)
     MSG_ID = []
-    await eor(_, m, f"{len(MSG_ID)} messages found...")
     ok = await m.reply("forwarding messages....")
     async for i in ch:
         MSG_ID.append(i.id)
+    await eor(_, m, f"{len(MSG_ID)} messages found...")
     b = 0
     a = 0
     n = len(MSG_ID)//50
@@ -238,9 +238,7 @@ async def back(_, m):
             a += 1
             b += 1
         except FloodWait as e:
-            flood_time = 20
-            if flood_time > 200:
-                continue
+            flood_time = 10
             await ok.edit(f"sleeping for {flood_time}s..")
             await asyncio.sleep(flood_time)
         if n == a:
