@@ -238,7 +238,7 @@ async def back(_, m):
             a += 1
             b += 1
         except FloodWait as e:
-            flood_time = int(e.x)
+            flood_time = 20
             if flood_time > 200:
                 continue
             await ok.edit(f"sleeping for {flood_time}s..")
