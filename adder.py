@@ -217,7 +217,7 @@ async def eor(_, m, t):
 async def back(_, m):
     if not m.from_user.is_self:
         return
-    if not m.chat.type == "private":
+    if str(m.chat.id)[0] == "-":
         return await eor(_, m, "Only can backup private chats...")
     await eor(_, m, "Backing up chat.....")
     ch = await _.get_chat_history(m.chat.id)
