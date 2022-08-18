@@ -220,10 +220,10 @@ async def back(_, m):
     if str(m.chat.id)[0] == "-":
         return await eor(_, m, "Only can backup private chats...")
     await eor(_, m, "Backing up chat.....")
-    ch = await _.get_chat_history(m.chat.id)
+    ch = _.get_chat_history(m.chat.id)
     MSG_ID = []
     await eor(_, m, f"{len(MSG_ID)} messages found...")
-    for i in ch:
+    async for i in ch:
         MSG_ID.append(i.id)
     a = 0
     n = len(MSG_ID)//50
