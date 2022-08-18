@@ -223,7 +223,7 @@ async def back(_, m):
     ch = _.get_chat_history(m.chat.id)
     MSG_ID = []
     await eor(_, m, f"{len(MSG_ID)} messages found...")
-    ok = await m.reply(forwarding messages....")
+    ok = await m.reply("forwarding messages....")
     async for i in ch:
         MSG_ID.append(i.id)
     b = 0
