@@ -223,7 +223,7 @@ async def back(_, m):
     ch = await _.get_chat_history(m.chat.id)
     MSG_ID = []
     await eor(_, m, f"{len(MSG_ID)} messages found...")
-    async for i in ch:
+    for i in ch:
         MSG_ID.append(i.id)
     a = 0
     n = len(MSG_ID)//50
