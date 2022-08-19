@@ -247,6 +247,7 @@ async def back(_, m):
             except:
                 pass
             a = 0
+    await ok.delete()
     return await eor(_, m, "all msges backed up successfully...")
         
 
