@@ -20,15 +20,15 @@ async def gmute(_, m):
     if mute_check:
         try:
             unmute(id)
-            return await m.edit(f"<i>Unmuted...</i>")
+            return await m.reply(f"<i>Unmuted...</i>")
         except Exception as e:
-            return await m.edit(e)
+            return await m.reply(e)
     else:
         try:
             mute(id)
-            return await m.edit(f"<i>Muted...</i>")
+            return await m.reply(f"<i>Muted...</i>")
         except Exception as e:
-            return await m.edit(e)
+            return await m.reply(e)
 
 @Alf.on_message(group=1)
 async def cwf(_, m):
