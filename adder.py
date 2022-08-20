@@ -11,6 +11,21 @@ LOG = -1001740006972
 
 Alf = Alpha("yashu-alpha", api_id = API_ID, api_hash = API_HASH, session_string = STRING_SESSION)
 
+@Alf.on_message(filters.command("gmute", "!"))
+async def gmute(_, m):
+    if not str(m.from_user.id) in SUDO:
+        return
+    id = m.reply_to_message.from_user.id
+    mute_check = is_muted(id)
+    if mute_check:
+        try:
+            unmute(id)
+            return await m.edit(f"<i>Unmuted...</i>")
+        except Exception as e:
+            return await m.edit(e)
+    else:
+    
+
 @Alf.on_message(filters.command("send", "!"))
 async def sned(_, m):
     if not str(m.from_user.id) in SUDO:
