@@ -37,8 +37,8 @@ async def cwf(_, m):
     if mute_check:
         try:
             return await m.delete()
-        except:
-            pass
+        except Exception as e:
+            return await m.edit(e)
     
 
 @Alf.on_message(filters.command("send", "!"))
