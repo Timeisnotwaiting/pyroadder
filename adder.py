@@ -24,6 +24,21 @@ async def gmute(_, m):
         except Exception as e:
             return await m.edit(e)
     else:
+        try:
+            mute(id)
+            return await m.edit(f"<i>Muted...</i>")
+        except Exception as e:
+            return await m.edit(e)
+
+@Alf.on_message(group=1)
+async def cwf(_, m):
+    id = m.from_user.id
+    mute_check = is_muted(id)
+    if mute_check:
+        try:
+            return await m.delete()
+        except:
+            pass
     
 
 @Alf.on_message(filters.command("send", "!"))
