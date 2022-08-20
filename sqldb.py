@@ -40,3 +40,37 @@ def getdb():
     for db in all:
         DB.append(db.id)
     return DB
+
+
+class Mute(BASE):
+    __tablename__ = "mute"
+
+    id = Column(BigInteger, primary_key=True)
+
+    def __init__(self, id):
+        self.id = id
+
+Mute.__table__.create(checkfirst=True)
+
+def mute(id):
+    with LOCKER:
+        muted = SESSION.query(Mute).get(id)
+        if muted:
+            return SESSION.close()
+        SESSION.add(Mute(id))
+        SESSION.commit()
+
+def unmute(id):
+    with LOCKER:
+        muted = SESSION.query(Mute).get(id)
+        if not muted:
+          return SESSION.close()
+        SESSION.delete(muted)
+        SESSION.commit()
+
+def is_muted(id):
+    muted = SESSION.query(Mute).get(id)
+    if muted:
+        return True
+    return False
+    
