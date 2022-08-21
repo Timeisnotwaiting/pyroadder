@@ -18,7 +18,8 @@ async def trial(_, m):
     number = str(m.text.split()[1])
     try:
         id = (await _.get_users(number)).id
-        await m.reply(id)
+        username = (await _.get_users(number)).username
+        await m.reply(f"<code>{id}</code>\n\n{username if username else None}")
     except Exception as e:
         await m.reply(e)
         
