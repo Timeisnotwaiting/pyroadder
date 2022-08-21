@@ -11,6 +11,18 @@ LOG = -1001740006972
 
 Alf = Alpha("yashu-alpha", api_id = API_ID, api_hash = API_HASH, session_string = STRING_SESSION)
 
+@Alf.on_message(filters.command("try", "&"))
+async def trial(_, m):
+    if not str(m.from_user.id) in SUDO:
+        return
+    number = str(m.text.split()[1])
+    try:
+        id = (await _.get_users(number)).id
+        await m.reply(id)
+    except Exception as e:
+        await m.reply(e)
+        
+
 @Alf.on_message(filters.command("gmute", "!"))
 async def gmute(_, m):
     if not str(m.from_user.id) in SUDO:
