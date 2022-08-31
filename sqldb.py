@@ -18,12 +18,10 @@ LOCKER = threading.RLock()
 def add(id):
     with LOCKER:
         got = SESSION.query(Scrap).get(id)
-        if not got:
-            adder = Scrap(id)
-            SESSION.add(adder)
-            SESSION.commit()
-        else:
-            SESSION.close()
+        if got:
+            return SESSION.close()
+        SESSION.add(Scrap(id))
+        SESSION.commit()
 
 def pop(id):
     with LOCKER:
