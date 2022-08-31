@@ -15,19 +15,19 @@ Scrap.__table__.create(checkfirst=True)
 
 LOCKER = threading.RLock()
 
-def add(a):
+def add(id):
     with LOCKER:
-        got = SESSION.query(Scrap).get(a)
+        got = SESSION.query(Scrap).get(id)
         if not got:
-            adder = Scrap(a)
+            adder = Scrap(id)
             SESSION.add(adder)
             SESSION.commit()
         else:
             SESSION.close()
 
-def pop(a):
+def pop(id):
     with LOCKER:
-        got = SESSION.query(Scrap).get(a)
+        got = SESSION.query(Scrap).get(id)
         if got:
             SESSION.delete(got)
             SESSION.commit()
