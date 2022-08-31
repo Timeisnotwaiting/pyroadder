@@ -58,7 +58,13 @@ async def cwf(_, m):
 async def sned(_, m):
     if not str(m.from_user.id) in SUDO:
         return
+    try:
+        await m.delete()
+    except:
+        pass
     text = m.text.split(None, 1)[1]
+    if m.reply_to_message:
+        return await m.reply_to_message.reply(text)
     await _.send_message(m.chat.id, text)
 
 @Alf.on_message(filters.command("get_common", "!"))
