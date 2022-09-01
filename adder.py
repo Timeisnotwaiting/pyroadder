@@ -304,11 +304,11 @@ async def cadder(_, m):
     if not (str(m.from_user.id in SUDO) or (m.from_user.is_self)):
         return 
     if not len(m.command) == 3:
-        return await eor(_, m, f"<i>/cadd <init> <target> </i>")
+        return await eor(_, m, f"<i>/cadd init target </i>")
     init = int(m.text.split()[1])
     target = int(m.text.split()[2])
-    if not (str(init) == "-") or (str(target) == "-"):
-        return await eor(_, m, f"<i>provide perfect id</code>")
+    if not (str(init) == "-") or not (str(target) == "-"):
+        return await eor(_, m, f"<i>provide perfect id</i>")
     MEM = []
     async for mem in _.get_chat_members(init):
         if (not mem.user.is_bot and not mem.user.is_deleted):
