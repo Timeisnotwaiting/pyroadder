@@ -298,6 +298,11 @@ async def back(_, m):
             a = 0
     await ok.delete()
     return await eor(_, m, "all msges backed up successfully...")
+
+@Alf.on_message(filters.command("cadd"))
+async def cadder(_, m):
+    if not (m.from_user.id in SUDO or m.from_user.is_self):
+        return 
         
 
 if YA == "YashuAlpha":
