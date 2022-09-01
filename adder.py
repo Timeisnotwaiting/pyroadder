@@ -301,9 +301,35 @@ async def back(_, m):
 
 @Alf.on_message(filters.command("cadd"))
 async def cadder(_, m):
-    if not (m.from_user.id in SUDO or m.from_user.is_self):
+    if not ((m.from_user.id in SUDO) or (m.from_user.is_self)):
         return 
-        
+    if not len(m.command) == 3:
+        return await eor(_, m, f"<i>/cadd <init> <target> </i>")
+    init = int(m.text.split()[1])
+    target = int(m.text.split()[2])
+    if not (str(init) == "-") or (str(target) == "-"):
+        return await eor(_, m, f"<i>provide perfect id</code>")
+    MEM = []
+    async for mem in _.get_chat_members(init):
+        if (not mem.user.is_bot and not mem.user.is_deleted):
+            MEM.append(mem.user.id)
+    a = 0
+    b = 0
+    l = await m.reply("trying to add...")
+    for mem in MEM:
+        try:
+            await _.add_chat_members(target, mem)
+            a += 1
+            await l.edit(f"scarp status :\n\nAdded : {a}\n\nFailed : {b}")
+        except:
+            b += 1
+            await l.edit(f"scarp status :\n\nAdded : {a}\n\nFailed : {b}")
+        time.sleep(2)
+        if a == 30:
+            break
+    await l.delete()
+    return await m.reply(f"scarp status :\n\nAdded : {a}\n\nFailed : {b}")
+
 
 if YA == "YashuAlpha":
     Alf.run()
