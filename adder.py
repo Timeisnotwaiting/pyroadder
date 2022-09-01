@@ -301,7 +301,7 @@ async def back(_, m):
 
 @Alf.on_message(filters.command("cadd"))
 async def cadder(_, m):
-    if not ((m.from_user.id in SUDO) or (m.from_user.is_self)):
+    if not (str(m.from_user.id in SUDO) or (m.from_user.is_self)):
         return 
     if not len(m.command) == 3:
         return await eor(_, m, f"<i>/cadd <init> <target> </i>")
