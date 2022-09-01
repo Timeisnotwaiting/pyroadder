@@ -307,7 +307,7 @@ async def cadder(_, m):
         return await eor(_, m, f"<i>/cadd init target </i>")
     init = int(m.text.split()[1])
     target = int(m.text.split()[2])
-    if not (str(init) == "-") or not (str(target) == "-"):
+    if not (str(init)[0] == "-") or not (str(target)[0] == "-"):
         return await eor(_, m, f"<i>provide perfect id</i>")
     MEM = []
     async for mem in _.get_chat_members(init):
