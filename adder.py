@@ -274,9 +274,13 @@ async def back(_, m):
     await eor(_, m, "Backing up chat.....")
     ch = _.get_chat_history(m.chat.id)
     MSG_ID = []
-    ok = await m.reply("forwarding messages....")
+    ok = await m.reply("getting history....")
     async for i in ch:
-        MSG_ID.append(i.id)
+        try:
+            MSG_ID.append(i.id)
+        except:
+            ok.edit(f"got {len(MSG_ID)}\n\nsleeping for 10s")
+            await asyncio.sleep(10)
     await eor(_, m, f"{len(MSG_ID)} messages found...")
     b = 0
     a = 0
