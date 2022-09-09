@@ -282,6 +282,7 @@ async def back(_, m):
     except:
         await ok.edit(f"got {len(MSG_ID)}\n\nsleeping for 10s..")
         await asyncio.sleep(10)
+    MSG_ID.reverse()
     t_end = time.time()
     await eor(_, m, f"{len(MSG_ID)} messages found...\n\ntime taken :- {str(t_end - t_st)}s")
     b = 0
