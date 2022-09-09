@@ -296,6 +296,8 @@ async def back(_, m):
             flood_time = 10
             await ok.edit(f"sleeping for {flood_time}s..")
             await asyncio.sleep(flood_time)
+        except:
+            pass
         if per == a:
             percent += 1
             try:
