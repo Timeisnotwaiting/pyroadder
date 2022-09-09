@@ -45,7 +45,10 @@ async def gmute(_, m):
 
 @Alf.on_message(group=1)
 async def cwf(_, m):
-    id = m.from_user.id
+    try:
+        id = m.from_user.id
+    except:
+        pass
     mute_check = is_muted(id)
     if mute_check:
         try:
