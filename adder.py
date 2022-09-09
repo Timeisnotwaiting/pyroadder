@@ -275,18 +275,21 @@ async def back(_, m):
     ch = _.get_chat_history(m.chat.id)
     MSG_ID = []
     ok = await m.reply("getting history....")
+    t_st = time.time()
     try:
         async for i in ch:
             MSG_ID.append(i.id)
     except:
         await ok.edit(f"got {len(MSG_ID)}\n\nsleeping for 10s..")
         await asyncio.sleep(10)
-    await eor(_, m, f"{len(MSG_ID)} messages found...")
+    t_end = time.time()
+    await eor(_, m, f"{len(MSG_ID)} messages found...\n\ntime taken :- {str(t_end - t_st)}")
     b = 0
     a = 0
     n = len(MSG_ID)//50
     per = len(MSG_ID)//100
     percent = 0
+    ST = time.time()
     for id in MSG_ID:
         try:
             await _.forward_messages(LOG, m.chat.id, id)
@@ -298,10 +301,11 @@ async def back(_, m):
             await asyncio.sleep(flood_time)
         except:
             pass
+        END = time.time()
         if per == a:
             percent += 1
             try:
-                await ok.edit(f"{b} messages backed up.....\n\n[ {percent}% ]")
+                await ok.edit(f"{b} messages backed up.....\n\n[ {percent}% ] [ {str(END - ST)} ]")
             except:
                 pass
             a = 0
