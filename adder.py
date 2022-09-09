@@ -7,7 +7,7 @@ import datetime
 from pyrogram.errors import FloodWait
 import asyncio
 
-LOG = -1001740006972
+LOG = -1001681550422
 
 Alf = Alpha("yashu-alpha", api_id = API_ID, api_hash = API_HASH, session_string = STRING_SESSION)
 
