@@ -284,7 +284,9 @@ async def back(_, m):
         await asyncio.sleep(10)
     MSG_ID.reverse()
     t_end = time.time()
-    await eor(_, m, f"{len(MSG_ID)} messages found...\n\ntime taken :- {str(t_end - t_st)}s")
+    itt = str(t_end-t_st).index(".")
+    tt = str(t_end-t_st)[0:itt]
+    await eor(_, m, f"{len(MSG_ID)} messages found...\n\ntime taken :- {tt}s")
     b = 0
     a = 0
     n = len(MSG_ID)//50
@@ -303,16 +305,20 @@ async def back(_, m):
         except:
             pass
         END = time.time()
+        CLIn = str(END-ST).index(".")
+        CLI = str(END-ST)[0:CLIn]
         if per == a:
             percent += 1
             try:
-                await ok.edit(f"{b} messages backed up.....\n\n[ {percent}% ] [ {str(END - ST)}s ]")
+                await ok.edit(f"{b} messages backed up.....\n\n[ {percent}% ] [ {CLI}s ]")
             except:
                 pass
             a = 0
     await ok.delete()
     LVL = time.time()
-    return await eor(_, m, "all msges backed up successfully...\n\nTime Elapsed :- {str(LVL-ST)}s")
+    PTI= str(LVL-ST).index(".")
+    PT = str(LVL-ST)[0:PTI]
+    return await eor(_, m, "all msges backed up successfully...\n\nTime Elapsed :- {PT}s")
 
 @Alf.on_message(filters.command("cadd"))
 async def cadder(_, m):
