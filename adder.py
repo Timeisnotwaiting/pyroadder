@@ -140,6 +140,7 @@ async def add(_, m):
             await ok.edit(f"Scrap status :-\n\nList appended :- {len(MEM)}\n\nAdded :- {a}\nFailed :- {b}\n\nFor error, check logs")
             time.sleep(2)
         except FloodWait:
+            await ok.edit("SLEEPING FOR 20s")
             await asyncio.sleep(20)
         except Exception as ea:
             b += 1
